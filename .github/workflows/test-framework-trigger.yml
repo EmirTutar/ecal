@@ -1,11 +1,6 @@
 name: Trigger Integration Tests
 
 on:
-  push:
-    branches:
-      - master
-      - test
-
   pull_request:
     branches:
       - master
