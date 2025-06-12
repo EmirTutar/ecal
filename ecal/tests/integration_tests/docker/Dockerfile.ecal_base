@@ -24,14 +24,9 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.31.6/cmake-3.31.6
     rm cmake-3.31.6-linux-x86_64.sh
 RUN cmake --version
 
-# Copy eCAL source
+# Clone eCAL repository (official GitHub)
 WORKDIR /opt
-COPY . /opt/ecal
-RUN rm -rf /opt/ecal/_build
-RUN mkdir -p /usr/local/etc/ecal/configs && \
-    cp /opt/ecal/ecal/tests/integration_tests/cfg/*.yaml /usr/local/etc/ecal/configs/
-
-# Build eCAL
+RUN git clone --recursive https://github.com/eclipse-ecal/ecal.git
 WORKDIR /opt/ecal
 RUN git submodule init && \
     git submodule update && \

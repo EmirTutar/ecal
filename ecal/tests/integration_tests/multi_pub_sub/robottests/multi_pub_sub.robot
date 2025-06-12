@@ -23,10 +23,6 @@ ${BUILD_SCRIPT}   ${EMPTY}
 ${BASE_IMAGE}     multi_pub_sub
 
 *** Test Cases ***
-Multi Pub/Sub Local SHM Test
-    [Tags]    multi_pub_sub_local_shm
-    Run Multi Pub Sub Test Local    local_shm
-
 Multi Pub/Sub Local UDP Test
     [Tags]    multi_pub_sub_local_udp
     Run Multi Pub Sub Test Local    local_udp
@@ -34,6 +30,10 @@ Multi Pub/Sub Local UDP Test
 Multi Pub/Sub Local TCP Test
     [Tags]    multi_pub_sub_local_tcp
     Run Multi Pub Sub Test Local    local_tcp
+
+Multi Pub/Sub Local SHM Test
+    [Tags]    multi_pub_sub_local_shm
+    Run Multi Pub Sub Test Local    local_shm
 
 Multi Pub/Sub Network UDP Test
     [Tags]    multi_pub_sub_network_udp
