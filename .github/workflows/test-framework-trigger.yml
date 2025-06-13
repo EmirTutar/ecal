@@ -13,6 +13,16 @@ jobs:
   trigger-tests:
     runs-on: ubuntu-latest
     steps:
+      - name: Output test trigger info
+        run: |
+          echo "Tests for the commit have been triggered."
+          echo ""
+          echo "View status and logs:"
+          echo "https://github.com/EmirTutar/ECAL_Test_Framework/actions"
+          echo ""
+          echo "Test report (available after completion):"
+          echo "https://emirtutar.github.io/ECAL_Test_Framework/"
+
       - name: Trigger Test-Framework via repository_dispatch
         uses: peter-evans/repository-dispatch@v3
         with:
