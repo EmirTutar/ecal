@@ -4,10 +4,10 @@ on:
   pull_request:
     branches:
       - master
-      - test
-
+  push:
+    branches:
+      - master # Finale run
   workflow_dispatch:
-
 
 jobs:
   trigger-tests:
