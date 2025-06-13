@@ -1,9 +1,12 @@
 name: Trigger Integration Tests
 
 on:
-  push:
+  pull_request:
     branches:
       - master
+  push:
+    branches:
+      - master # Finale run
   workflow_dispatch:
 
 jobs:
