@@ -23,7 +23,7 @@ jobs:
 
       - name: Trigger test framework if token is set
         run: |
-          if [ -z "${{ secrets.TEST_FRAMEWORK_TOKENs }}" ]; then
+          if [ -z "${{ secrets.TEST_FRAMEWORK_TOKEN }}" ]; then
             echo "INFO: TEST_FRAMEWORK_TOKEN is not set."
             echo "Skipping test trigger."
           else
@@ -43,7 +43,7 @@ jobs:
 
       - name: Test reports and logs
         run: |
-          if [ -z "${{ secrets.TEST_FRAMEWORK_TOKENs }}" ]; then
+          if [ -z "${{ secrets.TEST_FRAMEWORK_TOKEN }}" ]; then
             echo "INFO: TEST_FRAMEWORK_TOKEN is not set."
             echo "Skipping test trigger."
           else
