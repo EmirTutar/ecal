@@ -21,18 +21,25 @@ jobs:
             echo "COMMIT_SHA=${{ github.sha }}" >> $GITHUB_ENV
           fi
 
-      - name: Trigger Test-Framework via repository_dispatch
-        uses: peter-evans/repository-dispatch@v3
-        with:
-          token: ${{ secrets.TEST_FRAMEWORK_TOKEN }}
-          repository: EmirTutar/ECAL_Test_Framework
-          event-type: run-tests
-          client-payload: |
-            {
-              "sha": "${{ env.COMMIT_SHA }}",
-              "repo": "${{ github.repository }}",
-              "run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            }
+      - name: Trigger test framework if token is set
+        run: |
+          if [ -z "${{ secrets.TEST_FRAMEWORK_TOKEN }}" ]; then
+            echo "INFO: TEST_FRAMEWORK_TOKEN is not set."
+            echo "Skipping test trigger."
+          else
+            echo "Triggering test framework..."
+            curl -X POST https://api.github.com/repos/EmirTutar/ECAL_Test_Framework/dispatches \
+              -H "Accept: application/vnd.github.v3+json" \
+              -H "Authorization: token ${{ secrets.TEST_FRAMEWORK_TOKEN }}" \
+              -d '{
+                "event_type": "run-tests",
+                "client_payload": {
+                  "sha": "'"${{ env.COMMIT_SHA }}"'",
+                  "repo": "'"${{ github.repository }}"'",
+                  "run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                }
+              }'
+          fi
 
       - name: Test reports and logs
         run: |
