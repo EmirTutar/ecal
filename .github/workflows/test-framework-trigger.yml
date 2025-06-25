@@ -4,9 +4,6 @@ on:
   pull_request:
     branches:
       - master
-  push:
-    branches:
-      - master # Finale run
   workflow_dispatch:
 
 jobs:
@@ -21,7 +18,7 @@ jobs:
           event-type: run-tests
           client-payload: |
             {
-              "sha": "${{ github.sha }}",
+              "sha": "${{ github.event.pull_request.head.sha }}",
               "repo": "${{ github.repository }}",
               "run_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }
