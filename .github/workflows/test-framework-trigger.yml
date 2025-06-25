@@ -43,10 +43,14 @@ jobs:
 
       - name: Test reports and logs
         run: |
-          echo "ECAL-Testsframework has been triggered."
-          echo ""
-          echo "View status and logs:"
-          echo "https://github.com/EmirTutar/ECAL_Test_Framework/actions"
-          echo ""
-          echo "Test report (available after completion):"
-          echo "https://emirtutar.github.io/ECAL_Test_Framework/"
+          if [ -z "${{ secrets.TEST_FRAMEWORK_TOKENs }}" ]; then
+            echo "INFO: TEST_FRAMEWORK_TOKEN is not set."
+            echo "Skipping test trigger."
+          else
+            echo "ECAL-Testsframework has been triggered."
+            echo ""
+            echo "View status and logs:"
+            echo "https://github.com/EmirTutar/ECAL_Test_Framework/actions"
+            echo ""
+            echo "Test report (available after completion):"
+            echo "https://emirtutar.github.io/ECAL_Test_Framework/"
