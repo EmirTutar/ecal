@@ -54,3 +54,4 @@ jobs:
             echo ""
             echo "Test report (available after completion):"
             echo "https://emirtutar.github.io/ECAL_Test_Framework/"
+          fi
